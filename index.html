@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAS Buffet - Cardápio</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    header {
+        background-color: #a40000;
+        padding: 20px;
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .tabs {
+        display: flex;
+        justify-content: center;
+        background: #ffffff;
+        overflow-x: auto;
+        border-bottom: 3px solid #a40000;
+    }
+
+    .tab {
+        padding: 14px 25px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        background: none;
+        color: #444;
+    }
+
+    .tab.active {
+        color: #a40000;
+        border-bottom: 3px solid #a40000;
+    }
+
+    .content {
+        display: none;
+        padding: 20px;
+        text-align: left;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .content.active {
+        display: block;
+    }
+
+    .item {
+        margin: 10px 0;
+        padding: 12px;
+        background: white;
+        border-radius: 10px;
+        border-left: 6px solid #a40000;
+    }
+
+    .item-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #a40000;
+    }
+
+    .price {
+        float: right;
+        font-weight: bold;
+        color: #111;
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>🍽️ VAS Buffet - Cardápio</header>
+
+<div class="tabs">
+    <button class="tab active" onclick="openTab('entradas')">Entradas</button>
+    <button class="tab" onclick="openTab('pratos')">Pratos Principais</button>
+    <button class="tab" onclick="openTab('bebidas')">Bebidas</button>
+    <button class="tab" onclick="openTab('sobremesas')">Sobremesas</button>
+</div>
+
+<!-- ENTRADAS -->
+<div id="entradas" class="content active">
+    <div class="item"><span class="item-title">Bruschetta</span></div>
+    <div class="item"><span class="item-title">Mini Coxinhas</span></div>
+    <div class="item"><span class="item-title">Tábua de Frios</span></div>
+</div>
+
+<!-- PRATOS PRINCIPAIS -->
+<div id="pratos" class="content">
+    <div class="item"><span class="item-title">Feijoada Completa</span></div>
+    <div class="item"><span class="item-title">Estrogonofe de Frango</span></div>
+    <div class="item"><span class="item-title">Lasanha à Bolonhesa</span></div>
+</div>
+
+<!-- BEBIDAS -->
+<div id="bebidas" class="content">
+    <div class="item"><span class="item-title">Refrigerantes</span></div>
+    <div class="item"><span class="item-title">Água com e sem gás</span></div>
+    <div class="item"><span class="item-title">Suco Natural</span></div>
+</div>
+
+<!-- SOBREMESAS -->
+<div id="sobremesas" class="content">
+    <div class="item"><span class="item-title">Pudim de Leite</span></div>
+    <div class="item"><span class="item-title">Mousse de Maracujá</span></div>
+    <div class="item"><span class="item-title">Bolo de Chocolate</span></div>
+</div>
+
+<script>
+    function openTab(tabId) {
+        document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.content').forEach(div => div.classList.remove('active'));
+
+        event.target.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
 
