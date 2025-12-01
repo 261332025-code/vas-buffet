@@ -385,12 +385,14 @@
     const cartTotalElement = document.getElementById('cart-total');
     const whatsappBtn = document.getElementById('whatsapp-btn');
     let cart = {};
+    // NOVO NÚMERO DE WHATSAPP
+    const whatsappNumber = "5511994436495"; 
 
     function updateCart() {
         let total = 0;
         let message = "Olá, gostaria de fazer o seguinte pedido:\n\n";
         let hasItems = false;
-        const whatsappNumber = "5521999999999";
+        
 
         document.querySelectorAll('.menu-item').forEach(itemElement => {
             const name = itemElement.dataset.name;
@@ -404,13 +406,13 @@
                 total += price * qty;
                 let line = `${qty}x ${name}`;
                 if (option) line = `${qty}x ${name} (${option})`;
-                message += `- ${line} (R$ ${price.toFixed(2)})\n`;
+                message += `- ${line} (R$ ${price.toFixed(2).replace('.', ',')})\n`;
             }
         });
 
         cartTotalElement.textContent = total.toFixed(2).replace('.', ',');
         if (hasItems) {
-            const encoded = encodeURIComponent(message + `\n*TOTAL: R$ ${total.toFixed(2)}*`);
+            const encoded = encodeURIComponent(message + `\n*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*`);
             whatsappBtn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encoded}`;
             whatsappBtn.style.backgroundColor = '#4CAF50';
             whatsappBtn.textContent = 'Finalizar Pedido (WhatsApp)';
