@@ -19,8 +19,8 @@ body {
 .page-title { font-family: 'Playfair Display', serif; color: #f7d353; font-size: 2.5em; padding: 20px 0; text-shadow: 1px 1px 2px #000; }
 .section-title { font-family: 'Playfair Display', serif; color: #f7d353; font-size: 1.8em; margin-top: 30px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid rgba(247, 211, 83, 0.5); text-align: left; }
 .menu-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 15px 0; text-align: left; }
-.item-details { display: block; flex-grow: 1; }
-.item-img img { width: 100%; max-width: 150px; border-radius: 8px; margin-bottom: 5px; }
+.item-details { display: flex; flex-direction: row; flex-grow: 1; gap: 10px; }
+.item-img img { width: 120px; border-radius: 8px; }
 .item-text { flex-grow: 1; }
 .item-title { font-size: 1.1em; font-weight: 700; color: #fff; margin-bottom: 5px; }
 .item-description { font-size: 0.85em; color: #aaa; }
@@ -42,7 +42,6 @@ body {
 </style>
 </head>
 <body>
-
 <div class="container">
 <h1 class="page-title">Cardápio Essencial Gourmet</h1>
 
@@ -59,11 +58,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 18,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -77,11 +72,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 22,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -95,11 +86,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 20,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -111,16 +98,12 @@ body {
         <div class="item-img"><img src="https://i.imgur.com/kUXyzPv.jpeg"></div>
         <div class="item-text">
             <div class="item-title">Filé de Frango com Mel e Mostarda</div>
-            <div class="item-description">Filé de frango suculento, grelhado e envolto em molho agridoce de mel e mostarda, finalizado com ervas finas aromáticas.</div>
+            <div class="item-description">Filé suculento, grelhado e envolto em molho agridoce de mel e mostarda, finalizado com ervas finas aromáticas.</div>
         </div>
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 58,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -134,11 +117,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 60,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -152,11 +131,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 54,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -173,11 +148,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 15,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -191,11 +162,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 18,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -212,11 +179,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 8,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -234,11 +197,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 12,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -256,11 +215,7 @@ body {
     </div>
     <div class="item-price-controls">
         <span class="item-price">R$ 30,00</span>
-        <div class="quantity-controls">
-            <button class="quantity-btn minus-btn">-</button>
-            <input type="number" class="quantity-input" value="0" min="0" readonly>
-            <button class="quantity-btn plus-btn">+</button>
-        </div>
+        <div class="quantity-controls"><button class="quantity-btn minus-btn">-</button><input type="number" class="quantity-input" value="0" min="0" readonly><button class="quantity-btn plus-btn">+</button></div>
     </div>
 </div>
 
@@ -269,55 +224,49 @@ body {
 <!-- Carrinho -->
 <div class="footer-cart">
     <div class="cart-content">
-        <span class="total-text">Total: R$ <span id="total">0,00</span></span>
-        <a href="#" id="finish-order" class="finish-btn" target="_blank">Finalizar Pedido</a>
+        <span class="total-text">Total: R$ <span id="cart-total">0,00</span></span>
+        <a href="#" id="whatsapp-btn" class="finish-btn" target="_blank">Finalizar Pedido</a>
     </div>
 </div>
 
 <script>
-const items = document.querySelectorAll('.menu-item');
-const totalDisplay = document.getElementById('total');
-const finishBtn = document.getElementById('finish-order');
+const whatsappNumber = "5521999999999"; // Substitua pelo seu número
+const cartTotalElement = document.getElementById('cart-total');
+const whatsappBtn = document.getElementById('whatsapp-btn');
 
-function updateTotal() {
+function updateCart() {
     let total = 0;
-    items.forEach(item => {
+    let message = "Olá! Gostaria de fazer o pedido:%0A";
+    let hasItems = false;
+
+    document.querySelectorAll('.menu-item').forEach(item => {
         const qty = parseInt(item.querySelector('.quantity-input').value);
         const price = parseFloat(item.dataset.price);
-        total += qty * price;
-    });
-    totalDisplay.textContent = total.toFixed(2).replace('.', ',');
-}
+        let name = item.dataset.name;
 
-items.forEach(item => {
-    const plusBtn = item.querySelector('.plus-btn');
-    const minusBtn = item.querySelector('.minus-btn');
-    const input = item.querySelector('.quantity-input');
-    const select = item.querySelector('.item-select');
+        const select = item.querySelector('.item-select');
+        if (select) name += ` (${select.value})`;
 
-    plusBtn.addEventListener('click', () => {
-        input.value = parseInt(input.value) + 1;
-        updateTotal();
-    });
-
-    minusBtn.addEventListener('click', () => {
-        if (parseInt(input.value) > 0) {
-            input.value = parseInt(input.value) - 1;
-            updateTotal();
+        if (qty > 0) {
+            total += qty * price;
+            hasItems = true;
+            message += `- ${qty}x ${name} (R$ ${price.toFixed(2)})%0A`;
         }
     });
 
-    if (select) {
-        select.addEventListener('change', updateTotal);
-    }
-});
+    cartTotalElement.textContent = total.toFixed(2).replace('.', ',');
 
-finishBtn.addEventListener('click', () => {
-    let message = 'Olá! Gostaria de fazer o pedido:%0A';
-    items.forEach(item => {
-        const qty = parseInt(item.querySelector('.quantity-input').value);
-        if (qty > 0) {
-            let optionText = '';
-            const select = item.querySelector('.item-select');
-            if (select) optionText = ` (${select.value})`;
-            message += `${item.dataset.name}${optionText} x
+    if (hasItems) {
+        whatsappBtn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${message}TOTAL: R$ ${total.toFixed(2)}`;
+        whatsappBtn.style.backgroundColor = '#4CAF50';
+        whatsappBtn.textContent = 'Finalizar Pedido (WhatsApp)';
+    } else {
+        whatsappBtn.href = "#";
+        whatsappBtn.style.backgroundColor = '#f7d353';
+        whatsappBtn.textContent = 'Finalizar Pedido';
+    }
+}
+
+document.querySelectorAll('.plus-btn').forEach(btn => btn.addEventListener('click', e => {
+    const input = e.target.closest('.menu-item').querySelector('.quantity-input');
+    input.value = parseInt(input.value) +
