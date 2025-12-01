@@ -22,7 +22,6 @@
             margin: 0 auto;
             padding: 0 10px;
         }
-
         .page-title {
             font-family: 'Playfair Display', serif;
             color: #f7d353;
@@ -40,7 +39,6 @@
             border-bottom: 2px solid rgba(247, 211, 83, 0.5);
             text-align: left;
         }
-        
         .menu-item {
             display: flex;
             justify-content: space-between;
@@ -50,22 +48,18 @@
             text-align: left;
         }
         .item-details {
-            display: flex;
+            display: block;
             flex-grow: 1;
-            gap: 10px;
         }
-
         .item-img img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 6px;
+            width: 100%;
+            max-width: 150px;
+            border-radius: 8px;
+            margin-bottom: 5px;
         }
-
         .item-text {
             flex-grow: 1;
         }
-
         .item-title {
             font-size: 1.1em;
             font-weight: 700;
@@ -76,7 +70,6 @@
             font-size: 0.85em;
             color: #aaa;
         }
-
         .item-price-controls {
             display: flex;
             align-items: center;
@@ -88,7 +81,6 @@
             color: #fff;
             margin-right: 15px;
         }
-
         .quantity-controls {
             display: flex;
             align-items: center;
@@ -118,7 +110,10 @@
             font-size: 1em;
             border-radius: 4px;
         }
-
+        .quantity-input:focus {
+            outline: none;
+            border-color: #f7d353;
+        }
         .footer-cart {
             position: fixed;
             bottom: 0;
@@ -138,6 +133,10 @@
             margin: 0 auto;
             padding: 0 10px;
         }
+        .total-text {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
         .finish-btn {
             background-color: #f7d353;
             color: #1a1a1a;
@@ -147,8 +146,13 @@
             font-weight: 700;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
         }
-
+        .finish-btn:hover {
+            background-color: #e6c241;
+        }
         .item-select {
             background: #2c2c2c;
             color: #fff;
@@ -159,6 +163,18 @@
             font-size: 0.9em;
             min-width: 100px;
         }
+        .item-select option {
+            background: #2c2c2c;
+            color: #fff;
+        }
+        @media (min-width: 701px) {
+            .page-title {
+                font-size: 3em;
+            }
+            .section-title {
+                font-size: 2.2em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -168,7 +184,6 @@
 
     <h2 class="section-title">Entradas Essenciais</h2>
 
-    <!-- 1 -->
     <div class="menu-item" data-name="Mini Salada Fresca - 100 g" data-price="18.00" data-id="e1">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/Acufxx9.jpeg"></div>
@@ -177,7 +192,6 @@
                 <div class="item-description">Folhas selecionadas, tomate cereja, azeitonas e mussarela fresca.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 18,00</span>
             <div class="quantity-controls">
@@ -188,7 +202,6 @@
         </div>
     </div>
 
-    <!-- 2 -->
     <div class="menu-item" data-name="Mini Vol-au-vent - 2 unid." data-price="22.00" data-id="e2">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/voEEIve.jpeg"></div>
@@ -197,7 +210,6 @@
                 <div class="item-description">Massa folhada amanteigada recheada com requeijão e ervas.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 22,00</span>
             <div class="quantity-controls">
@@ -208,7 +220,6 @@
         </div>
     </div>
 
-    <!-- 3 -->
     <div class="menu-item" data-name="Cubos de Frango Empanados - 120 g" data-price="20.00" data-id="e3">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/OsDOAZo.jpeg"></div>
@@ -217,7 +228,6 @@
                 <div class="item-description">Frango crocante com molho especial.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 20,00</span>
             <div class="quantity-controls">
@@ -230,16 +240,14 @@
 
     <h2 class="section-title">Pratos Principais</h2>
 
-    <!-- 4 -->
     <div class="menu-item" data-name="Massa Cremosa de Frango com Bacon" data-price="55.00" data-id="p1">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/9gYvZks.jpeg"></div>
             <div class="item-text">
                 <div class="item-title">Massa Cremosa de Frango com Bacon</div>
-                <div class="item-description">Massa fresca envolvida em molho cremoso artesanal.</div>
+                <div class="item-description">Massa fresca envolvida em molho cremoso artesanal, com cubos de frango macio e bacon levemente dourado.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 55,00</span>
             <div class="quantity-controls">
@@ -250,16 +258,14 @@
         </div>
     </div>
 
-    <!-- 5 -->
     <div class="menu-item" data-name="Filé Suíno com Molho Agridoce de Ervas e Batatas" data-price="62.00" data-id="p2">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/VrFEJfL.jpeg"></div>
             <div class="item-text">
                 <div class="item-title">Filé Suíno com Molho Agridoce de Ervas e Batatas</div>
-                <div class="item-description">Filé suíno grelhado com batatas rústicas.</div>
+                <div class="item-description">Filé suíno grelhado e suculento com molho agridoce e batatas rústicas.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 62,00</span>
             <div class="quantity-controls">
@@ -270,18 +276,71 @@
         </div>
     </div>
 
+    <div class="menu-item" data-name="Filé de Frango com Mel e Mostarda" data-price="58.00" data-id="p3">
+        <div class="item-details">
+            <div class="item-img"><img src="https://i.imgur.com/kUXyzPv.jpeg"></div>
+            <div class="item-text">
+                <div class="item-title">Filé de Frango com Mel e Mostarda</div>
+                <div class="item-description">Filé de frango suculento, grelhado e envolto em molho agridoce de mel e mostarda, finalizado com ervas finas aromáticas.</div>
+            </div>
+        </div>
+        <div class="item-price-controls">
+            <span class="item-price">R$ 58,00</span>
+            <div class="quantity-controls">
+                <button class="quantity-btn minus-btn">-</button>
+                <input type="number" class="quantity-input" value="0" min="0" readonly>
+                <button class="quantity-btn plus-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-item" data-name="Lasanha à Bolonhesa" data-price="60.00" data-id="p4">
+        <div class="item-details">
+            <div class="item-img"><img src="https://i.imgur.com/JMLa2ft.jpeg"></div>
+            <div class="item-text">
+                <div class="item-title">Lasanha à Bolonhesa</div>
+                <div class="item-description">Camadas generosas de massa, ragù de carne moída e molho de tomate, finalizada com queijo gratinado — sabor caseiro e reconfortante.</div>
+            </div>
+        </div>
+        <div class="item-price-controls">
+            <span class="item-price">R$ 60,00</span>
+            <div class="quantity-controls">
+                <button class="quantity-btn minus-btn">-</button>
+                <input type="number" class="quantity-input" value="0" min="0" readonly>
+                <button class="quantity-btn plus-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-item" data-name="Penne ao Molho Branco com Requeijão" data-price="54.00" data-id="p5">
+        <div class="item-details">
+            <div class="item-img"><img src="https://i.imgur.com/FpzE5Bu.jpeg"></div>
+            <div class="item-text">
+                <div class="item-title">Penne ao Molho Branco com Requeijão Cremoso</div>
+                <div class="item-description">Penne al dente envolvido em molho branco cremoso com requeijão derretido — textura aveludada, sabor suave e reconfortante.</div>
+            </div>
+        </div>
+        <div class="item-price-controls">
+            <span class="item-price">R$ 54,00</span>
+            <div class="quantity-controls">
+                <button class="quantity-btn minus-btn">-</button>
+                <input type="number" class="quantity-input" value="0" min="0" readonly>
+                <button class="quantity-btn plus-btn">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sobremesas -->
     <h2 class="section-title">Sobremesas</h2>
 
-    <!-- 6 -->
     <div class="menu-item" data-name="Mini Torta de Limão" data-price="15.00" data-id="s1">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/okOIgp6.jpeg"></div>
             <div class="item-text">
                 <div class="item-title">Mini Torta de Limão</div>
-                <div class="item-description">Creme de limão azedo e doce em base crocante.</div>
+                <div class="item-description">Creme de limão azedo e doce em massa crocante, coberta com merengue suave.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 15,00</span>
             <div class="quantity-controls">
@@ -292,16 +351,14 @@
         </div>
     </div>
 
-    <!-- 7 -->
     <div class="menu-item" data-name="Brownie de Chocolate com Nozes" data-price="18.00" data-id="s2">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/AqfAEV4.jpeg"></div>
             <div class="item-text">
                 <div class="item-title">Brownie de Chocolate com Nozes</div>
-                <div class="item-description">Sabor intenso de chocolate com nozes.</div>
+                <div class="item-description">Intenso sabor de chocolate meio amargo, com pedaços crocantes de nozes.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 18,00</span>
             <div class="quantity-controls">
@@ -312,18 +369,17 @@
         </div>
     </div>
 
+    <!-- Bebidas -->
     <h2 class="section-title">Bebidas</h2>
 
-    <!-- 8 -->
     <div class="menu-item" data-name="Água Gaseificada com Limão e Hortelã" data-price="8.00" data-id="b1">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/Nh40ya6.png"></div>
             <div class="item-text">
                 <div class="item-title">Água Gaseificada com Limão e Hortelã</div>
-                <div class="item-description">Refrescante com toque cítrico.</div>
+                <div class="item-description">Opção refrescante, servida com fatias frescas de limão e hortelã.</div>
             </div>
         </div>
-
         <div class="item-price-controls">
             <span class="item-price">R$ 8,00</span>
             <div class="quantity-controls">
@@ -334,52 +390,10 @@
         </div>
     </div>
 
-    <!-- 9 -->
     <div class="menu-item" data-name="Suco Natural (Seleção)" data-price="12.00" data-id="b2">
         <div class="item-details">
             <div class="item-img"><img src="https://i.imgur.com/dPK62ce.jpeg"></div>
             <div class="item-text">
                 <div class="item-title">Suco Natural</div>
                 <div class="item-description">Feito na hora com frutas frescas.</div>
-                <select class="item-select" data-option-id="b2-opt">
-                    <option value="Laranja" selected>Laranja</option>
-                    <option value="Abacaxi com Hortelã">Abacaxi com Hortelã</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="item-price-controls">
-            <span class="item-price">R$ 12,00</span>
-            <div class="quantity-controls">
-                <button class="quantity-btn minus-btn">-</button>
-                <input type="number" class="quantity-input" value="0" min="0" readonly>
-                <button class="quantity-btn plus-btn">+</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 10 -->
-    <div class="menu-item" data-name="Vinho (Taça)" data-price="30.00" data-id="b3">
-        <div class="item-details">
-            <div class="item-img"><img src="https://i.imgur.com/itfh9yG.jpeg"></div>
-            <div class="item-text">
-                <div class="item-title">Vinho (Taça)</div>
-                <div class="item-description">Seleção Especial V.A.S.</div>
-                <select class="item-select" data-option-id="b3-opt">
-                    <option value="Tinto" selected>Tinto</option>
-                    <option value="Branco">Branco</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="item-price-controls">
-            <span class="item-price">R$ 30,00</span>
-            <div class="quantity-controls">
-                <button class="quantity-btn minus-btn">-</button>
-                <input type="number" class="quantity-input" value="0" min="0" readonly>
-                <button class="quantity-btn plus-btn">+</button>
-            </div>
-        </div>
-    </div>
-
-</div>
+                <select class="item-select" data-option
