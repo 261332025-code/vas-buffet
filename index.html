@@ -1,434 +1,526 @@
-<style>
-/* Premium dark style */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400&display=swap');
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAS BUFFET - Cardápio</title>
+    <link rel="icon" href="https://img.icons8.com/color/48/restaurant.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Padrões */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a1a;
+            color: #d4d4d4;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 70px; /* Espaço para o rodapé fixo do carrinho */
+            text-align: center;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
 
-body{background:#0d0d0d;color:#e7e7e7;margin:0;font-family:"Playfair Display",serif;padding:18px;}
-/* Rodapé + PADDING extra para evitar que o rodapé fixo cubra o conteúdo */
-.menu-container{max-width:920px;margin:0 auto;background:#0f0f0f;padding:26px;border-radius:18px;border:1.5px solid #b08d57;box-shadow:0 0 30px rgba(176,141,87,0.25);padding-bottom: 70px;}
-h1{font-size:34px;text-align:center;color:#d4af37;margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid #b08d57;text-shadow:0 0 8px rgba(212,175,55,0.45)}
-.category{margin-top:18px}
-.category-title{font-size:24px;color:#d4af37;display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #333;cursor:pointer;font-weight:700}
-.items{display:block;padding:10px 0}
+        /* Tipografia e Títulos */
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            color: #d4d4d4;
+            font-size: 2.5em;
+            padding: 20px 0;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #f7d353;
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid rgba(247, 211, 83, 0.5);
+            text-align: left;
+        }
+        
+        /* Itens do Cardápio */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            text-align: left;
+        }
+        .item-details {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+        }
+        .item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Correção de Imagens para responsividade */
+        .item-img img {
+            max-width: 100%; /* Garante que a imagem nunca seja maior que o contêiner dela */
+            height: auto;   /* Mantém a proporção da imagem ao redimensionar */
+            border-radius: 8px; /* Mantém o estilo arredondado */
+        }
+        
+        .item-text {
+            flex-grow: 1;
+        }
+        .item-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #f7d353;
+            margin-bottom: 5px;
+        }
+        .item-description {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+        .item-price-controls {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        .item-price {
+            font-weight: 700;
+            color: #fff;
+            margin-right: 15px;
+        }
 
-/* Item Desktop: Usa flexbox para manter tudo na linha */
-.item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed #2b2b2b;}
-.item:last-child{border-bottom:none}
-.img-container{width:100px;height:100px;border-radius:8px;border:1px solid #d4af37;overflow:hidden;background:#111;display:block;position:relative;}
-.item img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
-.item-info{flex:1}
-.item-title{font-size:18px;font-weight:600;color:#e7e7e7}
-.item-desc{font-family:"Poppins",sans-serif;font-size:13px;color:#aaa;margin-top:6px}
+        /* Controles de Quantidade */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-btn {
+            background-color: #383838;
+            color: #f7d353;
+            border: none;
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+        .quantity-btn:hover {
+            background-color: #555;
+        }
+        .quantity-input {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #444;
+            width: 30px;
+            text-align: center;
+            margin: 0 5px;
+            height: 28px;
+            font-size: 1em;
+            border-radius: 4px;
+        }
+        .quantity-input:focus {
+            outline: none;
+            border-color: #f7d353;
+        }
 
-/* Estilo para o campo de seleção das bebidas */
-.item-selection {
-    font-family: "Poppins", sans-serif;
-    margin-top: 8px;
-}
-.item-selection select {
-    background: #222;
-    color: #d4af37;
-    border: 1px solid #b08d57;
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 13px;
-    cursor: pointer;
-}
+        /* Rodapé Fixo (Carrinho) */
+        .footer-cart {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2c2c2c;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .cart-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        .total-text {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+        .finish-btn {
+            background-color: #f7d353;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .finish-btn:hover {
+            background-color: #e6c241;
+        }
 
-/* Desktop: Preço e Controle na mesma linha do item-info (Layout padrão) */
-.price {
-    font-family:"Poppins",sans-serif;font-size:18px;font-weight:700;color:#d4af37;margin-right:12px;
-    order: 3;
-}
-.quantity-control{
-    display:flex;align-items:center;gap:8px;
-    order: 4;
-}
-.quantity-control button{background:#b08d57;color:#0d0d0d;border:none;width:28px;height:28px;font-size:16px;font-weight:700;border-radius:6px;cursor:pointer;line-height:28px;}
-.quantity-control button:hover{background:#f6d98d}
-.item-quantity{font-size:16px;font-weight:700;width:28px;text-align:center;color:#d4af37;}
+        /* Estilo para Select */
+        .item-select {
+            background: #2c2c2c;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            min-width: 100px;
+        }
+        .item-select option {
+            background: #2c2c2c;
+            color: #fff;
+        }
+        
+        /* Media Query para telas grandes */
+        @media (min-width: 701px) {
+            .page-title {
+                font-size: 3em;
+            }
+            .section-title {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <h1 class="page-title">Cardápio Essencial Gourmet</h1>
 
-/* cart footer - Rodapé Fixo */
-#cartBox{position:fixed;bottom:0;left:0;width:100%;background:#111;border-top:2px solid #d4af37;padding:10px 0;box-shadow:0 -6px 20px rgba(0,0,0,0.6);z-index:1100}
-#cartContent{max-width:920px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
-#totalPrice{font-size:20px;font-weight:800;color:#fff}
-#checkoutBtn{background:#d4af37;color:#111;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
-#checkoutBtn:hover{background:#f6d98d}
+        <h2 class="section-title">Entradas Essenciais</h2>
+        
+        <div class="menu-item" data-name="Mini Salada Fresca - 100 g" data-price="18.00" data-id="e1">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/6P6X13m/minisalada.jpg" alt="Mini Salada Fresca"></div>
+                <div class="item-text">
+                    <div class="item-title">Mini Salada Fresca - 100 g</div>
+                    <div class="item-description">Folhas selecionadas, tomate cereja, azeitonas e mussarela fresca.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 18,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="menu-item" data-name="Mini Vol-au-vent - 2 unid." data-price="22.00" data-id="e2">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/VMy1n37/vol-au-vent.jpg" alt="Mini Vol-au-vent"></div>
+                <div class="item-text">
+                    <div class="item-title">Mini Vol-au-vent - 2 unid.</div>
+                    <div class="item-description">Massa folhada amanteigada recheada com requeijão e ervas.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 22,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-item" data-name="Cubos de Frango Empanados - 120 g" data-price="20.00" data-id="e3">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/t4Y6L2W/cubos-frango.jpg" alt="Cubos de Frango Empanados"></div>
+                <div class="item-text">
+                    <div class="item-title">Cubos de Frango Empanados - 120 g</div>
+                    <div class="item-description">Frango crocante com molho especial.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 20,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
-/* === LAYOUT MOBILE CORRIGIDO (Para celulares < 720px) === */
-@media (max-width:720px){
-  h1{font-size:26px}
-  .category-title{font-size:18px}
-  body{padding:10px;}
-  .menu-container{padding: 16px; padding-bottom: 70px;} /* Mantém padding-bottom ajustado */
-  .item{
-      /* Usa Grid para definir a estrutura */
-      display: grid;
-      /* Define 2 colunas: 80px (imagem) | 1fr (texto) */
-      grid-template-columns: 80px 1fr; 
-      /* Define 2 linhas (ou mais, o CSS Grid se ajusta ao conteúdo) */
-      gap: 10px 10px; 
-      padding: 12px 0;
-      align-items: flex-start;
-  }
-    /* Ajusta layout para incluir a seleção na linha de info */
-    .item-info {
-        grid-column: 2; /* Fica na segunda coluna */
-        grid-row: 1; 
-    }
-    .price {
-        grid-column: 1 / span 2; /* Ocupa as 2 colunas */
-        grid-row: 2; 
-    }
-    .quantity-control {
-        grid-column: 1 / span 2; /* Ocupa as 2 colunas */
-        grid-row: 2; 
-        justify-self: end; /* Ajusta para a direita */
-    }
-    .img-container{
-        grid-column: 1; /* Fica na primeira coluna */
-        grid-row: 1;
-        width: 80px; 
-        height: 80px; 
-    }
-  
-  /* Corrigindo o Rodapé Fixo no mobile */
-  #cartContent{
-      padding: 0 10px; 
-      gap: 15px; 
-      justify-content: space-around; 
-  }
-  #totalPrice{
-      font-size: 18px; 
-  }
-  #checkoutBtn{
-      font-size: 14px; 
-      padding: 10px 15px; 
-  }
-}
-</style>
+        <h2 class="section-title">Pratos Principais</h2>
+        
+        <div class="menu-item" data-name="Massa Cremosa de Frango com Bacon" data-price="55.00" data-id="p1">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/8Yj05j2/massa-frango.jpg" alt="Massa Cremosa de Frango com Bacon"></div>
+                <div class="item-text">
+                    <div class="item-title">Massa Cremosa de Frango com Bacon</div>
+                    <div class="item-description">Massa fresca envolvida em molho cremoso artesanal, com cubos de frango macio e bacon levemente dourado.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 55,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-item" data-name="Filé Suíno com Molho Agridoce de Ervas e Batatas" data-price="62.00" data-id="p2">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/3W6qL3t/file-suino.jpg" alt="Filé Suíno com Molho Agridoce"></div>
+                <div class="item-text">
+                    <div class="item-title">Filé Suíno com Molho Agridoce de Ervas e Batatas</div>
+                    <div class="item-description">Filé suíno grelhado e suculento com molho agridoce e batatas rústicas.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 62,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
-<div class="menu-container">
-  <h1>Cardápio Essencial Gourmet</h1>
+        <h2 class="section-title">Sobremesas</h2>
+        
+        <div class="menu-item" data-name="Mini Torta de Limão" data-price="15.00" data-id="s1">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/3k8xY34/torta-limao.jpg" alt="Mini Torta de Limão"></div>
+                <div class="item-text">
+                    <div class="item-title">Mini Torta de Limão</div>
+                    <div class="item-description">Creme de limão azedo e doce em massa crocante, coberta com merengue suave.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 15,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-item" data-name="Brownie de Chocolate com Nozes" data-price="18.00" data-id="s2">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/Wf2Y1jQ/brownie.jpg" alt="Brownie de Chocolate"></div>
+                <div class="item-text">
+                    <div class="item-title">Brownie de Chocolate com Nozes</div>
+                    <div class="item-description">Intenso sabor de chocolate meio amargo, com pedaços crocantes de nozes.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 18,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
-    <div class="category">
-    <div class="category-title" onclick="toggleItems(this)">Entradas Essenciais <span class="sign">-</span></div>
-    <div class="items">
-      <div class="item" data-id="e1" data-price="18" data-name="Mini Salada Fresca">
-        <div class="img-container"><img src="https://i.imgur.com/Acufxx9.jpeg" alt="Mini Salada Fresca"></div>
-        <div class="item-info">
-          <div class="item-title">Mini Salada Fresca - 100 g</div>
-          <div class="item-desc">Folhas selecionadas, tomate cereja, azeitonas e muçarela fresca.</div>
-        </div>
-        <div class="price">R$ 18,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('e1', -1)">-</button>
-          <span id="qty-e1" class="item-quantity">0</span>
-          <button onclick="updateCart('e1', 1)">+</button>
-        </div>
-      </div>
+        <h2 class="section-title">Bebidas</h2>
 
-      <div class="item" data-id="e2" data-price="22" data-name="Mini Vol-au-vent">
-        <div class="img-container"><img src="https://i.imgur.com/voEEIve.jpeg" alt="Mini Vol-au-vent"></div>
-        <div class="item-info">
-          <div class="item-title">Mini Vol-au-vent - 2 unid.</div>
-          <div class="item-desc">Massa folhada amanteigada recheada com requeijão e ervas.</div>
-        </div>
-        <div class="price">R$ 22,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('e2', -1)">-</button>
-          <span id="qty-e2" class="item-quantity">0</span>
-          <button onclick="updateCart('e2', 1)">+</button>
-        </div>
-      </div>
+        <div class="menu-item" data-name="Água Gaseificada com Limão e Hortelã" data-price="8.00" data-id="b1">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/Vp8p1b8/agua-saborizada.jpg" alt="Água Gaseificada"></div>
+                <div class="item-text">
+                    <div class="item-title">Água Gaseificada com Limão e Hortelã</div>
+                    <div class="item-description">Opção refrescante, servida com fatias frescas de limão e hortelã.</div>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 8,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
-      <div class="item" data-id="e3" data-price="20" data-name="Cubos de Frango Empanados">
-        <div class="img-container"><img src="https://i.imgur.com/OsDOAZo.jpeg" alt="Cubos de Frango Empanados"></div>
-        <div class="item-info">
-          <div class="item-title">Cubos de Frango Empanados - 120 g</div>
-          <div class="item-desc">Frango crocante com molho especial.</div>
-        </div>
-        <div class="price">R$ 20,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('e3', -1)">-</button>
-          <span id="qty-e3" class="item-quantity">0</span>
-          <button onclick="updateCart('e3', 1)">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="menu-item" data-name="Suco Natural (Seleção)" data-price="12.00" data-id="b2">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/8Y1hV4m/suco-natural.jpg" alt="Suco Natural"></div>
+                <div class="item-text">
+                    <div class="item-title">Suco Natural</div>
+                    <div class="item-description">Feito na hora com frutas frescas.</div>
+                    <select class="item-select" data-option-id="b2-opt">
+                        <option value="Laranja" selected>Laranja</option>
+                        <option value="Abacaxi com Hortelã">Abacaxi com Hortelã</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 12,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-item" data-name="Vinho (Taça)" data-price="30.00" data-id="b3">
+            <div class="item-details">
+                <div class="item-img"><img src="https://i.ibb.co/L5T0fD0/vinho.jpg" alt="Vinho em Taça"></div>
+                <div class="item-text">
+                    <div class="item-title">Vinho (Taça)</div>
+                    <div class="item-description">Seleção Especial V.A.S.</div>
+                    <select class="item-select" data-option-id="b3-opt">
+                        <option value="Tinto" selected>Tinto</option>
+                        <option value="Branco">Branco</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item-price-controls">
+                <span class="item-price">R$ 30,00</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn minus-btn">-</button>
+                    <input type="number" class="quantity-input" value="0" min="0" readonly>
+                    <button class="quantity-btn plus-btn">+</button>
+                </div>
+            </div>
+        </div>
 
-    <div class="category">
-    <div class="category-title" onclick="toggleItems(this)">Pratos Principais <span class="sign">-</span></div>
-    <div class="items">
-      <div class="item" data-id="p1" data-price="52" data-name="Medalhão de Frango">
-        <div class="img-container"><img src="https://i.imgur.com/kUXyzPv.jpeg" alt="Medalhão de Frango"></div>
-        <div class="item-info">
-          <div class="item-title">Medalhão de Frango</div>
-          <div class="item-desc">Com molho mostarda e mel + acompanhamentos selecionados.</div>
-        </div>
-        <div class="price">R$ 52,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('p1', -1)">-</button>
-          <span id="qty-p1" class="item-quantity">0</span>
-          <button onclick="updateCart('p1', 1)">+</button>
-        </div>
-      </div>
+    </div> <div class="footer-cart">
+        <div class="cart-content">
+            <span class="total-text">Total: R$ <span id="cart-total">0.00</span></span>
+            <a href="#" class="finish-btn" id="whatsapp-btn">Finalizar Pedido</a>
+        </div>
+    </div>
 
-      <div class="item" data-id="p3" data-price="65" data-name="Filé Suíno com Molho Agridoce de Ervas e Batatas">
-        <div class="img-container"><img src="https://i.imgur.com/VrFEJfL.jpeg" alt="Filé Suíno com Molho Agridoce"></div>
-        <div class="item-info">
-          <div class="item-title">Filé Suíno com Molho Agridoce de Ervas e Batatas</div>
-          <div class="item-desc">Filé suíno grelhado e suculento com molho agridoce temperado com ervas. Acompanha batatas douradas.</div>
-        </div>
-        <div class="price">R$ 65,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('p3', -1)">-</button>
-          <span id="qty-p3" class="item-quantity">0</span>
-          <button onclick="updateCart('p3', 1)">+</button>
-        </div>
-      </div>
+    <script>
+        const cartTotalElement = document.getElementById('cart-total');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        let cart = {}; // { id: { name: '...', price: 0, qty: 0, option: '...' } }
 
-      <div class="item" data-id="p4" data-price="48" data-name="Lasanha à Bolonhesa Tradicional">
-        <div class="img-container"><img src="https://i.imgur.com/JMLa2ft.jpeg" alt="Lasanha à Bolonhesa"></div>
-        <div class="item-info">
-          <div class="item-title">Lasanha à Bolonhesa Tradicional</div>
-          <div class="item-desc">Camadas generosas com molho bolonhesa robusto, massa fresca e queijo cremoso. Finalizada com cobertura gratinada.</div>
-        </div>
-        <div class="price">R$ 48,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('p4', -1)">-</button>
-          <span id="qty-p4" class="item-quantity">0</span>
-          <button onclick="updateCart('p4', 1)">+</button>
-        </div>
-      </div>
+        function updateCart() {
+            let total = 0;
+            let message = "Olá, gostaria de fazer o seguinte pedido:\n\n";
+            let hasItems = false;
 
-      <div class="item" data-id="p5" data-price="55" data-name="Massa Cremosa de Frango com Bacon">
-        <div class="img-container"><img src="https://i.imgur.com/9gYvZks.jpeg" alt="Massa Cremosa Frango Bacon"></div>
-        <div class="item-info">
-          <div class="item-title">Massa Cremosa de Frango com Bacon</div>
-          <div class="item-desc">Massa fresca envolvida em molho cremoso artesanal, com cubos de frango macio e bacon levemente dourado.</div>
-        </div>
-        <div class="price">R$ 55,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('p5', -1)">-</button>
-          <span id="qty-p5" class="item-quantity">0</span>
-          <button onclick="updateCart('p5', 1)">+</button>
-        </div>
-      </div>
+            // 1. Processa todos os itens no DOM
+            document.querySelectorAll('.menu-item').forEach(itemElement => {
+                const id = itemElement.dataset.id;
+                const name = itemElement.dataset.name;
+                const price = parseFloat(itemElement.dataset.price);
+                const quantityInput = itemElement.querySelector('.quantity-input');
+                const selectElement = itemElement.querySelector('.item-select');
+                let option = '';
 
-      <div class="item" data-id="p6" data-price="43" data-name="Penne ao Molho Branco">
-        <div class="img-container"><img src="https://i.imgur.com/FpzE5Bu.jpeg" alt="Penne ao Molho Branco"></div>
-        <div class="item-info">
-          <div class="item-title">Penne ao Molho Branco</div>
-          <div class="item-desc">Macarrão penne ao molho branco cremoso com requeijão e ervas.</div>
-        </div>
-        <div class="price">R$ 43,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('p6', -1)">-</button>
-          <span id="qty-p6" class="item-quantity">0</span>
-          <button onclick="updateCart('p6', 1)">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
+                if (selectElement) {
+                    option = selectElement.value;
+                }
 
-    <div class="category">
-    <div class="category-title" onclick="toggleItems(this)">Sobremesas <span class="sign">-</span></div>
-    <div class="items">
-      <div class="item" data-id="s1" data-price="18" data-name="Mousse de Chocolate Belga 70%">
-        <div class="img-container"><img src="https://i.imgur.com/AqfAEV4.jpeg" alt="Mousse de Chocolate Belga 70%"></div>
-        <div class="item-info">
-          <div class="item-title">Mousse de Chocolate Belga 70%</div>
-          <div class="item-desc">Intensa e aerada, feita com chocolate de alta qualidade, finalizada com raspas.</div>
-        </div>
-        <div class="price">R$ 18,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('s1', -1)">-</button>
-          <span id="qty-s1" class="item-quantity">0</span>
-          <button onclick="updateCart('s1', 1)">+</button>
-        </div>
-      </div>
+                const qty = parseInt(quantityInput.value);
 
-      <div class="item" data-id="s2" data-price="18" data-name="Torta de Limão com Chocolate e Nozes">
-        <div class="img-container"><img src="https://i.imgur.com/okOIgp6.jpeg" alt="Torta de Limão com Chocolate e Nozes"></div>
-        <div class="item-info">
-          <div class="item-title">Torta de Limão com Chocolate e Nozes</div>
-          <div class="item-desc">Base crocante, recheio de limão suave e cobertura de chocolate, finalizada com farelo de nozes.</div>
-        </div>
-        <div class="price">R$ 18,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('s2', -1)">-</button>
-          <span id="qty-s2" class="item-quantity">0</span>
-          <button onclick="updateCart('s2', 1)">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
+                if (qty > 0) {
+                    hasItems = true;
+                    total += price * qty;
+                    
+                    // Adiciona o item ao objeto cart, com a opção selecionada
+                    cart[id] = { 
+                        name: name, 
+                        price: price, 
+                        qty: qty, 
+                        option: option 
+                    };
 
-    <div class="category">
-    <div class="category-title" onclick="toggleItems(this)">Bebidas <span class="sign">-</span></div>
-    <div class="items">
-      <div class="item" data-id="b1" data-price="12" data-name="Sucos Naturais">
-        <div class="img-container"><img src="https://i.imgur.com/dPK62ce.jpeg" alt="Sucos Naturais"></div>
-        <div class="item-info">
-          <div class="item-title">Sucos Naturais</div>
-          <div class="item-desc">Opções de laranja madura e abacaxi vibrante, apresentando refrescância e doçura natural.</div>
-          <div class="item-selection">
-            <select id="option-b1">
-              <option value="">Escolha o sabor</option>
-              <option value="Laranja">Laranja</option>
-              <option value="Abacaxi">Abacaxi</option>
-            </select>
-          </div>
-        </div>
-        <div class="price">R$ 12,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('b1', -1)">-</button>
-          <span id="qty-b1" class="item-quantity">0</span>
-          <button onclick="updateCart('b1', 1)">+</button>
-        </div>
-      </div>
+                    let lineItem = `${qty}x ${name}`;
+                    if (option) {
+                         // Se for um item com opção, usa a opção no lugar do nome genérico no pedido
+                        const displayName = `${name.replace(' (Seleção)', '')} (${option})`;
+                        lineItem = `${qty}x ${displayName}`;
+                    }
+                    message += `- ${lineItem} (R$ ${price.toFixed(2)} cada)\n`;
+                } else {
+                    delete cart[id]; // Remove do carrinho se a quantidade for zero
+                }
+            });
 
-      <div class="item" data-id="b2" data-price="22" data-name="Taça de Vinho">
-        <div class="img-container"><img src="https://i.imgur.com/itfh9yG.jpeg" alt="Taça de Vinho"></div>
-        <div class="item-info">
-          <div class="item-title">Taça de Vinho</div>
-          <div class="item-desc">Seleção Essencial V.A.S. para harmonização. Consulte a safra do dia.</div>
-          <div class="item-selection">
-            <select id="option-b2">
-              <option value="">Escolha a cor</option>
-              <option value="Tinto">Tinto</option>
-              <option value="Branco">Branco</option>
-            </select>
-          </div>
-        </div>
-        <div class="price">R$ 22,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('b2', -1)">-</button>
-          <span id="qty-b2" class="item-quantity">0</span>
-          <button onclick="updateCart('b2', 1)">+</button>
-        </div>
-      </div>
+            // 2. Atualiza o total
+            cartTotalElement.textContent = total.toFixed(2).replace('.', ',');
 
-      <div class="item" data-id="b3" data-price="8" data-name="Água Gaseificada com Limão">
-        <div class="img-container"><img src="https://i.imgur.com/Nh40ya6.png" alt="Água Gaseificada com Limão e Hortelã"></div>
-        <div class="item-info">
-          <div class="item-title">Água Gaseificada com Limão e Hortelã</div>
-          <div class="item-desc">Opção refrescante e elegante, servida com fatias frescas de limão e hortelã.</div>
-        </div>
-        <div class="price">R$ 8,00</div>
-        <div class="quantity-control">
-          <button onclick="updateCart('b3', -1)">-</button>
-          <span id="qty-b3" class="item-quantity">0</span>
-          <button onclick="updateCart('b3', 1)">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
+            // 3. Atualiza o botão do WhatsApp
+            if (hasItems) {
+                const formattedTotal = total.toFixed(2).replace('.', ',');
+                
+                message += `\n*TOTAL: R$ ${formattedTotal}*`;
 
-</div>
+                // Define o número de WhatsApp (substitua pelo seu número)
+                const whatsappNumber = "5521999999999"; 
+                const encodedMessage = encodeURIComponent(message);
+                
+                whatsappBtn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+                whatsappBtn.style.backgroundColor = '#4CAF50'; /* Verde */
+                whatsappBtn.textContent = 'Finalizar Pedido (WhatsApp)';
+            } else {
+                whatsappBtn.href = "#";
+                whatsappBtn.style.backgroundColor = '#f7d353'; /* Amarelo Padrão */
+                whatsappBtn.textContent = 'Finalizar Pedido';
+            }
+        }
 
-<div id="cartBox">
-  <div id="cartContent">
-    <div id="totalPrice">Total: R$ 0,00</div>
-    <button id="checkoutBtn" onclick="sendToWhatsApp()">Finalizar Pedido</button>
-  </div>
-</div>
+        // Funções de Eventos
+        document.addEventListener('click', function(e) {
+            const btn = e.target;
+            const itemElement = btn.closest('.menu-item');
 
-<script>
-// estado do carrinho: agora armazena a quantidade e a opção {id: {qty: 0, option: ''}}
-let cart = {};
-const itemData = {};
+            if (!itemElement) return;
 
-// inicializa itemData e cart
-document.querySelectorAll('.item').forEach(item => {
-  const id = item.getAttribute('data-id');
-  itemData[id] = { name: item.getAttribute('data-name'), price: parseFloat(item.getAttribute('data-price')) };
-  cart[id] = { qty: 0, option: '' }; 
-});
+            const quantityInput = itemElement.querySelector('.quantity-input');
+            let qty = parseInt(quantityInput.value);
 
-// toggle categorias
-function toggleItems(el){
-  const items = el.parentElement.querySelector('.items');
-  const sign = el.querySelector('.sign');
-  if (items.style.display === 'block') { items.style.display = 'none'; sign.textContent = '+'; }
-  else { items.style.display = 'block'; sign.textContent = '-'; }
-}
+            if (btn.classList.contains('plus-btn')) {
+                qty += 1;
+            } else if (btn.classList.contains('minus-btn') && qty > 0) {
+                qty -= 1;
+            } else {
+                return; 
+            }
 
-// atualiza quantidade
-function updateCart(id, change){
-  let q = cart[id].qty + change;
-  
-  if(q < 0) q = 0;
+            quantityInput.value = qty;
+            updateCart();
+        });
 
-  // Regra de Opção para itens b1 e b2 (adicionar)
-  if (change > 0 && (id === 'b1' || id === 'b2')) {
-    const selectEl = document.getElementById(`option-${id}`);
-    const selectedOption = selectEl.value;
-    if (selectedOption === '') {
-      alert('Por favor, escolha uma opção antes de adicionar.');
-      return; // Não adiciona
-    }
-    cart[id].option = selectedOption;
-  }
+        // Evento para o SELECT (opções de bebidas/extras)
+        document.querySelectorAll('.item-select').forEach(select => {
+            select.addEventListener('change', updateCart);
+        });
 
-  cart[id].qty = q;
+        // Inicializa o carrinho ao carregar a página
+        updateCart();
+    </script>
 
-  // Limpa a opção se a quantidade for zerada
-  if (q === 0 && (id === 'b1' || id === 'b2')) {
-    const selectEl = document.getElementById(`option-${id}`);
-    selectEl.value = '';
-    cart[id].option = '';
-  }
-  
-  const el = document.getElementById(`qty-${id}`);
-  if(el) el.textContent = q;
-  calculateTotal();
-}
+    <div style="text-align: center; font-size: 0.75em; color: #555; padding: 20px 0;">
+        V.A.S Buffet — Todos os direitos reservados.
+    </div>
 
-// calcula total
-function calculateTotal(){
-  let total = 0;
-  for(const id in cart){
-    total += cart[id].qty * itemData[id].price;
-  }
-  document.getElementById('totalPrice').innerText = 'Total: R$ ' + total.toFixed(2).replace('.',',');
-}
-
-// envia para WhatsApp
-function sendToWhatsApp(){
-  let message = "Olá, V.A.S Buffet! Gostaria de fazer o seguinte pedido/orçamento:%0A%0A";
-  let total = 0;
-  let has = false;
-
-  for(const id in cart){
-    const qty = cart[id].qty;
-    if(qty > 0){
-      has = true;
-      const item = itemData[id];
-      const itemTotal = qty * item.price;
-      total += itemTotal;
-      
-      let itemText = `*${qty}x* ${item.name}`;
-
-      // Adiciona a opção se existir
-      if (cart[id].option !== '') {
-        itemText += ` (${cart[id].option})`;
-      }
-      
-      itemText += ` (R$ ${itemTotal.toFixed(2).replace('.',',')})%0A`;
-      message += itemText;
-    }
-  }
-
-  if(!has){ alert('Seu carrinho está vazio.'); return; }
-
-  message += `%0A------------------------------------%0A*TOTAL ESTIMADO:* R$ ${total.toFixed(2).replace('.',',')}%0A------------------------------------%0A%0A*Por favor, preencha seus dados:*%0A- Nome:%0A- Data do Evento:%0A- Quantidade de Pessoas:%0A- Local de Entrega/Retirada:%0A%0AFico no aguardo do orçamento final!`;
-
-  const phoneNumber = '5511994436495';
-  const url = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
-  window.open(url, '_blank');
-}
-</script>
+</body>
+</html>
