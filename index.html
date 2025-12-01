@@ -27,7 +27,7 @@
         /* Tipografia e Títulos */
         .page-title {
             font-family: 'Playfair Display', serif;
-            color: #d4d4d4;
+            color: #f7d353; /* Cor alterada para destacar o título sem imagens */
             font-size: 2.5em;
             padding: 20px 0;
             text-shadow: 1px 1px 2px #000;
@@ -53,39 +53,23 @@
             text-align: left;
         }
         .item-details {
-            display: flex;
+            /* Altera para alinhar o texto imediatamente à esquerda */
+            display: block; 
             flex-grow: 1;
-            align-items: center;
         }
+        
+        /* Oculta o contêiner de imagem, garantindo que não ocupe espaço */
         .item-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            display: none; 
         }
-        .item-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Correção de Imagens para responsividade */
-        .item-img img {
-            max-width: 100%; 
-            height: auto;   
-            border-radius: 8px;
-        }
-        
+
         .item-text {
             flex-grow: 1;
         }
         .item-title {
             font-size: 1.1em;
             font-weight: 700;
-            color: #f7d353;
+            color: #fff; /* Título mais claro, já que não há imagem */
             margin-bottom: 5px;
         }
         .item-description {
@@ -104,7 +88,7 @@
             margin-right: 15px;
         }
 
-        /* Controles de Quantidade */
+        /* Controles de Quantidade (Mantidos) */
         .quantity-controls {
             display: flex;
             align-items: center;
@@ -139,7 +123,7 @@
             border-color: #f7d353;
         }
 
-        /* Rodapé Fixo (Carrinho) */
+        /* Rodapé Fixo (Carrinho - Mantido) */
         .footer-cart {
             position: fixed;
             bottom: 0;
@@ -177,10 +161,10 @@
             display: inline-block;
         }
         .finish-btn:hover {
-            background-color = '#e6c241';
+            background-color: #e6c241;
         }
 
-        /* Estilo para Select */
+        /* Estilo para Select (Mantido) */
         .item-select {
             background: #2c2c2c;
             color: #fff;
@@ -196,7 +180,6 @@
             color: #fff;
         }
         
-        /* Media Query para telas grandes */
         @media (min-width: 701px) {
             .page-title {
                 font-size: 3em;
@@ -216,7 +199,7 @@
         
         <div class="menu-item" data-name="Mini Salada Fresca - 100 g" data-price="18.00" data-id="e1">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/pYqf123.jpg" alt="Mini Salada Fresca"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Mini Salada Fresca - 100 g</div>
                     <div class="item-description">Folhas selecionadas, tomate cereja, azeitonas e mussarela fresca.</div>
@@ -234,7 +217,7 @@
 
         <div class="menu-item" data-name="Mini Vol-au-vent - 2 unid." data-price="22.00" data-id="e2">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/pQ12tA3.jpg" alt="Mini Vol-au-vent"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Mini Vol-au-vent - 2 unid.</div>
                     <div class="item-description">Massa folhada amanteigada recheada com requeijão e ervas.</div>
@@ -252,7 +235,7 @@
         
         <div class="menu-item" data-name="Cubos de Frango Empanados - 120 g" data-price="20.00" data-id="e3">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/kF7dC8v.jpg" alt="Cubos de Frango Empanados"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Cubos de Frango Empanados - 120 g</div>
                     <div class="item-description">Frango crocante com molho especial.</div>
@@ -272,7 +255,7 @@
         
         <div class="menu-item" data-name="Massa Cremosa de Frango com Bacon" data-price="55.00" data-id="p1">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/rN0v7gZ.jpg" alt="Massa Cremosa de Frango com Bacon"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Massa Cremosa de Frango com Bacon</div>
                     <div class="item-description">Massa fresca envolvida em molho cremoso artesanal, com cubos de frango macio e bacon levemente dourado.</div>
@@ -290,7 +273,7 @@
         
         <div class="menu-item" data-name="Filé Suíno com Molho Agridoce de Ervas e Batatas" data-price="62.00" data-id="p2">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/x4W8jVp.jpg" alt="Filé Suíno com Molho Agridoce"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Filé Suíno com Molho Agridoce de Ervas e Batatas</div>
                     <div class="item-description">Filé suíno grelhado e suculento com molho agridoce e batatas rústicas.</div>
@@ -310,7 +293,7 @@
         
         <div class="menu-item" data-name="Mini Torta de Limão" data-price="15.00" data-id="s1">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/0A6cZlW.jpg" alt="Mini Torta de Limão"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Mini Torta de Limão</div>
                     <div class="item-description">Creme de limão azedo e doce em massa crocante, coberta com merengue suave.</div>
@@ -328,7 +311,7 @@
         
         <div class="menu-item" data-name="Brownie de Chocolate com Nozes" data-price="18.00" data-id="s2">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/jM8oHqY.jpg" alt="Brownie de Chocolate"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Brownie de Chocolate com Nozes</div>
                     <div class="item-description">Intenso sabor de chocolate meio amargo, com pedaços crocantes de nozes.</div>
@@ -348,7 +331,7 @@
 
         <div class="menu-item" data-name="Água Gaseificada com Limão e Hortelã" data-price="8.00" data-id="b1">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/f2kE2g1.jpg" alt="Água Gaseificada"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Água Gaseificada com Limão e Hortelã</div>
                     <div class="item-description">Opção refrescante, servida com fatias frescas de limão e hortelã.</div>
@@ -366,7 +349,7 @@
 
         <div class="menu-item" data-name="Suco Natural (Seleção)" data-price="12.00" data-id="b2">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/G5qE7f8.jpg" alt="Suco Natural"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Suco Natural</div>
                     <div class="item-description">Feito na hora com frutas frescas.</div>
@@ -388,7 +371,7 @@
         
         <div class="menu-item" data-name="Vinho (Taça)" data-price="30.00" data-id="b3">
             <div class="item-details">
-                <div class="item-img"><img src="https://i.imgur.com/y8L2h3q.jpg" alt="Vinho em Taça"></div>
+                <div class="item-img"></div>
                 <div class="item-text">
                     <div class="item-title">Vinho (Taça)</div>
                     <div class="item-description">Seleção Especial V.A.S.</div>
@@ -425,10 +408,8 @@
             let message = "Olá, gostaria de fazer o seguinte pedido:\n\n";
             let hasItems = false;
             
-            // 1. Número de WhatsApp (altere para o seu número)
             const whatsappNumber = "5521999999999"; 
 
-            // 2. Processa todos os itens no DOM
             document.querySelectorAll('.menu-item').forEach(itemElement => {
                 const id = itemElement.dataset.id;
                 const name = itemElement.dataset.name;
@@ -465,10 +446,8 @@
                 }
             });
 
-            // 3. Atualiza o total
             cartTotalElement.textContent = total.toFixed(2).replace('.', ',');
 
-            // 4. Atualiza o botão do WhatsApp
             if (hasItems) {
                 const formattedTotal = total.toFixed(2).replace('.', ',');
                 
@@ -477,16 +456,15 @@
                 const encodedMessage = encodeURIComponent(message);
                 
                 whatsappBtn.href = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
-                whatsappBtn.style.backgroundColor = '#4CAF50'; /* Verde */
+                whatsappBtn.style.backgroundColor = '#4CAF50'; 
                 whatsappBtn.textContent = 'Finalizar Pedido (WhatsApp)';
             } else {
                 whatsappBtn.href = "#";
-                whatsappBtn.style.backgroundColor = '#f7d353'; /* Amarelo Padrão */
+                whatsappBtn.style.backgroundColor = '#f7d353'; 
                 whatsappBtn.textContent = 'Finalizar Pedido';
             }
         }
 
-        // Funções de Eventos
         document.addEventListener('click', function(e) {
             const btn = e.target;
             const itemElement = btn.closest('.menu-item');
@@ -508,12 +486,10 @@
             updateCart();
         });
 
-        // Evento para o SELECT (opções de bebidas/extras)
         document.querySelectorAll('.item-select').forEach(select => {
             select.addEventListener('change', updateCart);
         });
 
-        // Inicializa o carrinho ao carregar a página
         updateCart();
     </script>
 
